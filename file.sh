@@ -17,7 +17,8 @@ ruta=$(pwd)
 # Check the kitty terminal
 check_kitty_terminal(){
     if [ "$TERM" != "xterm-kitty" ]; then
-        echo -e "${redColour}[!] Please, run this script in the Kitty terminal.${endColour}"
+        echo -e "${redColour}[!] Please, run this script in the Kitty terminal.${endColour}\n"
+        echo -e "${grayColour}[+] To install kitty, run: 'sudo apt install kitty'${endColour}"
         exit 1
     fi
 }
