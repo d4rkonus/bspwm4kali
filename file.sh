@@ -109,6 +109,16 @@ kitty_files(){
     echo -e "${greenColour}[✓] Kitty configuration files added.${endColour}\n"
 }
 
+# Move fonts
+move_fonts(){
+    echo -e "${blueColour}[+] Moving hack nerd fonts...${endColour}"
+    cp -r $ruta/Hack/* ~/usr/share/fonts/ >/dev/null 2>&1
+    fc-cache -fv >/dev/null 2>&1
+    echo -e "${greenColour}[✓] Fonts moved successfully.${endColour}\n"
+}
+
+
+
 check_kitty_terminal
 check_root_user
 update_system
