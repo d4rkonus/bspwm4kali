@@ -45,8 +45,6 @@ install_dependencies(){
     echo -e "${greenColour}[✓] Dependencies installed.${endColour}\n"
 }
 
-# 
-
 # Cloning repositories
 clone_repositories(){
     echo -e "${blueColour}[+] Cloning repositories...${endColour}"
@@ -55,6 +53,43 @@ clone_repositories(){
         return 1
     }
     cd ~/github >/dev/null 2>&1 || return 1
+
+    echo -e "${yellowColour}[*] Cloning bspwm...${endColour}"
+    git clone https://github.com/baskerville/bspwm.git >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not clone bspwm${endColour}"
+        return 1
+    }
+
+    cd bspwm >/dev/null 2>&1 || return 1
+    echo -e "${yellowColour}[*] Building bspwm...${endColour}"
+    make >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not build bspwm${endColour}"
+        return 1
+    }
+    sudo make install >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not install bspwm${endColour}"
+        return 1
+    }
+
+    echo -e "${yellowColour}[*] Cloning sxhkd...${endColour}"
+    git clone https://github.com/baskerville/sxhkd.git >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not clone sxhkd${endColour}"
+        return 1
+    }
+
+    cd sxhkd >/dev/null 2>&1 || return 1
+    echo -e "${yellowColour}[*] Building sxhkd...${endColour}"
+    make >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not build sxhkd${endColour}"
+        return 1
+    }
+    sudo make install >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not install sxhkd${endColour}"
+        return 1
+    }
+    cd .. >/dev/null 2>&1 || return 1
+    
+
     echo -e "${yellowColour}[*] Cloning polybar...${endColour}"
     git clone --recursive https://github.com/polybar/polybar >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not clone polybar${endColour}"
@@ -117,6 +152,14 @@ move_fonts(){
     echo -e "${greenColour}[✓] Fonts moved successfully.${endColour}\n"
 }
 
+# Install bspwm
+install_bspwm_2(){
+    echo -e "${blueColour}[+] Installing bspwm...${endColour}"
+    apt install -y bspwm >/dev/null 2>&1
+    echo -e "${greenColour}[✓] Bspwm installed successfully.${endColour}\n"
+}
+
+
 
 
 check_kitty_terminal
@@ -127,4 +170,5 @@ clone_repositories
 install_polybar
 install_picom
 kitty_files
-
+move_fonts
+install_bspwm_2
