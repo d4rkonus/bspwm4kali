@@ -44,64 +44,82 @@ install_dependencies(){
     apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3 libpcre3-dev feh scrot scrub rofi xclip bat locate ranger neofetch wmname acpi sxhkd imagemagick >/dev/null 2>&1
     echo -e "${greenColour}[✓] Dependencies installed.${endColour}\n"
 }
-
 # Cloning repositories
 clone_repositories(){
     echo -e "${blueColour}[+] Cloning repositories...${endColour}"
+
+    # Create github directory
     mkdir -p ~/github >/dev/null 2>&1 || {
-        echo -e "${redColour}[!] Error: Could not create github directory${endColour}"
+        echo -e "${redColour}[!] Error: Could not create ~/github directory${endColour}"
         return 1
     }
-    cd ~/github >/dev/null 2>&1 || return 1
+    cd ~/github >/dev/null 2>&1 || {
+        echo -e "${redColour}[!] Error: Could not enter ~/github directory${endColour}"
+        return 1
+    }
 
+    # --- Clone BSPWM ---
     echo -e "${yellowColour}[*] Cloning bspwm...${endColour}"
     git clone https://github.com/baskerville/bspwm.git >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not clone bspwm${endColour}"
         return 1
     }
 
-    cd bspwm >/dev/null 2>&1 || return 1
     echo -e "${yellowColour}[*] Building bspwm...${endColour}"
+    cd bspwm >/dev/null 2>&1 || return 1
+
     make >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not build bspwm${endColour}"
         return 1
     }
+
     sudo make install >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not install bspwm${endColour}"
         return 1
     }
 
+    # Back to ~/github
+    cd ~/github >/dev/null 2>&1 || return 1
+
+    # --- Clone SXHKD ---
     echo -e "${yellowColour}[*] Cloning sxhkd...${endColour}"
     git clone https://github.com/baskerville/sxhkd.git >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not clone sxhkd${endColour}"
         return 1
     }
 
-    cd sxhkd >/dev/null 2>&1 || return 1
     echo -e "${yellowColour}[*] Building sxhkd...${endColour}"
+    cd sxhkd >/dev/null 2>&1 || return 1
+
     make >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not build sxhkd${endColour}"
         return 1
     }
+
     sudo make install >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not install sxhkd${endColour}"
         return 1
     }
-    cd .. >/dev/null 2>&1 || return 1
-    
 
+    cd ~/github >/dev/null 2>&1 || return 1
+
+    # --- Clone Polybar ---
     echo -e "${yellowColour}[*] Cloning polybar...${endColour}"
     git clone --recursive https://github.com/polybar/polybar >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not clone polybar${endColour}"
         return 1
     }
+
+    # --- Clone Picom ---
     echo -e "${yellowColour}[*] Cloning picom...${endColour}"
     git clone https://github.com/ibhagwan/picom.git >/dev/null 2>&1 || {
         echo -e "${redColour}[!] Error: Could not clone picom${endColour}"
         return 1
     }
+
     echo -e "${greenColour}[✓] Repositories cloned successfully${endColour}\n"
 }
+
 
 # Install polybar
 install_polybar(){
