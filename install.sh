@@ -17,7 +17,7 @@ fi
 
 ruta=$(pwd)
 
-if [ "$XTERM" != "xterm-kitty" ]; then
+if [ "$TERM" != "xterm-kitty" ]; then
     echo -e "Please install the kitty terminal and run this script inside it.\n"
     echo -e "You can install it by running:\n"
     echo -e "${greenColour}sudo apt install kitty${endColour}\n"
