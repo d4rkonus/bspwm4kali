@@ -1,12 +1,23 @@
 #!/bin/bash
 
+#Colours
+greenColour="\e[0;32m\033[1m"
+endColour="\033[0m\e[0m"
+redColour="\e[0;31m\033[1m"
+blueColour="\e[0;34m\033[1m"
+yellowColour="\e[0;33m\033[1m"
+purpleColour="\e[0;35m\033[1m"
+turquoiseColour="\e[0;36m\033[1m"
+grayColour="\e[0;37m\033[1m"
+
+
 if [ "$(whoami)" == "root" ]; then
     exit 1
 fi
 
 ruta=$(pwd)
 
-if [ $XTERM -ne "xterm-kitty" ]; then
+if [ "$XTERM" != "xterm-kitty" ]; then
     echo -e "Please install the kitty terminal and run this script inside it.\n"
     echo -e "You can install it by running:\n"
     echo -e "${greenColour}sudo apt install kitty${endColour}\n"
