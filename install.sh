@@ -51,7 +51,7 @@ sudo make install &> /dev/null
 cd ../sxhkd/ 
 make &> /dev/null
 sudo make install &> /dev/null
-
+sudo apt install -y bspwm &> /dev/null
 
 # Cargar repositorios
 echo -e "${yellowColour}[*]${endColour} Creating configuration files...\n"
@@ -72,12 +72,14 @@ git clone --recursive https://github.com/polybar/polybar
 cd polybar/
 mkdir build
 cd build/
-cmake ..
-make -j$(nproc)
-sudo make install
+cmake .. &> /dev/null
+make -j$(nproc) &> /dev/null
+sudo make install &> /dev/null
 
 # Configurar polybar
 echo -e "${yellowColour}[*]${endColour} Copying configuration files for polybar...\n"
+sudo apt update -y
+sudo apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y &> /dev/null
 cd /home/$USER/Downloads/
 git clone https://github.com/ibhagwan/picom.git
 cd picom/
