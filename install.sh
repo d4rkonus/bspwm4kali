@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Ocultar cursor al inicio
+tput civis
+
+# Restaurar cursor si el script se interrumpe o falla
+trap 'tput cnorm; exit' INT TERM EXIT
+
 #Colours
 greenColour="\e[0;32m\033[1m"
 endColour="\033[0m\e[0m"
@@ -11,7 +17,9 @@ turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 
 
-if [ "$(whoami)" == "root" ]; then
+if [ "$(id -u)" -eq 0 ]; then
+    echo -e "${redColour}[!]${endColour} No ejecutes este script como root"
+    tput cnorm
     exit 1
 fi
 
@@ -21,6 +29,7 @@ if [ "$TERM" != "xterm-kitty" ]; then
     echo -e "Please install the kitty terminal and run this script inside it.\n"
     echo -e "You can install it by running:\n"
     echo -e "${greenColour}sudo apt install kitty${endColour}\n"
+    tput cnorm
     exit 1
 fi
 
@@ -72,10 +81,13 @@ echo -e "${yellowColour}[*]${endColour} Copying configuration files for polybar.
 cd /home/$USER/Downloads/
 git clone https://github.com/ibhagwan/picom.git
 cd picom/
-git submodule update --init --recursive
-meson --buildtype=release . build
-ninja -C build
-sudo ninja -C build install
+git submodule update --init --recursive &> /dev/null
+meson --buildtype=release . build  &> /dev/null
+ninja -C build &> /dev/null
+sudo ninja -C build install &> /dev/null
 
 
 echo -e "The end of the installation script has been reached.\n"
+
+# Restaurar cursor al finalizar
+tput cnorm
