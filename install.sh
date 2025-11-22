@@ -94,8 +94,8 @@ cd /home/$USER/Downloads/
 git clone https://github.com/VaughnValle/blue-sky.git &> /dev/null
 mkdir -p ~/.config/polybar
 cd blue-sky/polybar/   
-cp * -r ~/.config/polybar
-echo "~/.config/polybar/launch.sh" >> ~/.config/bspwm/bspwmrc 
+cp * -r ~/.config/polybar &> /dev/null
+echo "~/.config/polybar/launch.sh" >> ~/.config/bspwm/bspwmrc &> /dev/null
 cd fonts/
 sudo cp * /usr/share/fonts/truetype/ &> /dev/null
 fc-cache -v &> /dev/null
