@@ -95,7 +95,7 @@ git clone https://github.com/VaughnValle/blue-sky.git &> /dev/null
 mkdir -p ~/.config/polybar
 cd blue-sky/polybar/   
 cp * -r ~/.config/polybar &> /dev/null
-echo "~/.config/polybar/launch.sh" >> ~/.config/bspwm/bspwmrc &> /dev/null
+echo "~/.config/polybar/launch.sh &" >> ~/.config/bspwm/bspwmrc &> /dev/null
 cd fonts/
 sudo cp * /usr/share/fonts/truetype/ &> /dev/null
 fc-cache -v &> /dev/null
@@ -106,7 +106,7 @@ mkdir ~/.config/picom
 cd ~/.config/picom
 cp -r "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
 echo 'picom --experimental-backends &' >> ~/.config/bspwm/bspwmrc 
-echo 'bspc config border_width 0' >> ~/.config/bspwm/bspwmrc
+echo 'bspc config border_width 0 &' >> ~/.config/bspwm/bspwmrc
 
 # Move fonts
 echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
