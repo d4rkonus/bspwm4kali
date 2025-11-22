@@ -3,6 +3,14 @@
 tput civis
 trap 'tput cnorm; exit' INT TERM EXIT
 
+
+check_root(){
+    if [ "$(whoami)" -ne "root" ]; then
+       echo -e "\n[!] Please run this script as root."
+       exit 1
+    fi
+}
+
 install_dependencies() {
     echo -e "\n[+] Instalando dependencias..."
     sudo apt-get install -y \
