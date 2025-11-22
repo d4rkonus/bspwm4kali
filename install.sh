@@ -5,7 +5,7 @@ trap 'tput cnorm; exit' INT TERM EXIT
 
 
 check_root(){
-    if [ "$(whoami)" -ne "root" ]; then
+    if [ "$(whoami)" != "root" ]; then
        echo -e "\n[!] Please run this script as root."
        exit 1
     fi
@@ -36,11 +36,25 @@ import_repositories(){
 
 install_polybar() {
     echo "[+] Instalando Polybar..."
-     cd ~/testing/polybar || exit 1
+    cd ~/testing/polybar || exit 1
     mkdir -p build
     cd build || exit 1
     cmake .. -DBUILD_DOC=OFF -Wno-dev >/dev/null 2>&1
     sudo make install >/dev/null 2>&1
+}
+
+install_picom(){
+    echo "[+] Instalando Picom..."
+    cd ~/github/picom
+    git submodule update --init --recursive
+    meson --buildtype=release . build
+    ninja -C build
+    sudo ninja -C build install
+}
+
+move_fonts(){
+    echo "[+] Moviendo fuentes..."
+    sudo cp -v $ruta/fonts/* /usr/share/fonts/
 }
 
 finally(){
@@ -51,6 +65,8 @@ check_root
 install_dependencies
 import_repositories
 install_polybar
+install_picom
+move_fonts
 finally
 
 tput cnorm
