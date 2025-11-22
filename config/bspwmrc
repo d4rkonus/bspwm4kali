@@ -23,17 +23,15 @@ bspc rule -a Screenkey manage=off
 # RESOLUCION ARANDR
 
 
-# WALLPAPER
-feh --bg-fill ~/Wallpaper/s4vitar.png
 
 # POLYBAR
-~/.config/polybar/launch.sh
+~/.config/polybar/launch.sh &
 
 # CUSTOM
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer true &
 
 # PICOM
 picom &
-bspc config border_width 0
+bspc config border_width 0 &
 
 xsetroot -cursor_name left_ptr &

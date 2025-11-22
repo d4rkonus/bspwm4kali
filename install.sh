@@ -105,6 +105,8 @@ echo -e "${yellowColour}[*]${endColour} Applying customizations to polybar...\n"
 mkdir ~/.config/picom
 cd ~/.config/picom
 cp -r "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
+echo 'picom --experimental-backends &' >> ~/.config/bspwm/bspwmrc 
+echo 'bspc config border_width 0' >> ~/.config/bspwm/bspwmrc
 
 # Move fonts
 echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
