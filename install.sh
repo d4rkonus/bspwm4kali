@@ -4,7 +4,7 @@ tput civis
 trap 'tput cnorm; exit' INT TERM EXIT
 
 install_dependencies() {
-    echo "Instalando dependencias..."
+    echo -e "\n[+] Instalando dependencias..."
     sudo apt-get install -y \
         build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
         libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev \
@@ -19,6 +19,7 @@ install_dependencies() {
 }
 
 import_repositories(){
+    echo -e "\n[+] Clonando repositorios..."
     mkdir -p ~/testing
     cd ~/testing
     git clone --recursive https://github.com/polybar/polybar 2>/dev/null
@@ -26,15 +27,16 @@ import_repositories(){
 }
 
 install_polybar(){
+    echo -e "\n[+] Instalando Polybar..."
     cd ~/testing/polybar 
     mkdir build
     cd build 
-    cmake .. -DBUILD_DOC=OFF >/dev/null
+    cmake ..
     sudo make install >/dev/null
 }
 
 finally(){
-    echo "Script finished."
+    echo "[$] Script finished."
 }
 
 
