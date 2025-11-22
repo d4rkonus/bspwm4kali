@@ -169,7 +169,7 @@ personalizar_polybar() {
 
 mover_fuentes() {
     echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
-    cp -r "$ruta/config/fonts/"* ~/usr/share/fonts/ &> /dev/null
+    cp -r "$ruta/fonts/"* /usr/share/fonts/ &> /dev/null
 }
 
 configurar_kitty() {
