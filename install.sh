@@ -108,6 +108,7 @@ cd ~/.config/picom
 cp "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
 echo "picom &" >> ~/.config/bspwm/bspwmrc 2>/dev/null
 echo "bspc config border_width 0 &" >> ~/.config/bspwm/bspwmrc 2>/dev/null
+cp -r "$ruta/polybar/"* ~/.config/polybar/ &> /dev/null
 
 # Move fonts
 echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
