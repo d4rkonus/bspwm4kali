@@ -22,8 +22,8 @@ import_repositories(){
     echo -e "\n[+] Clonando repositorios..."
     mkdir -p ~/testing
     cd ~/testing
-    git clone --recursive https://github.com/polybar/polybar 2>/dev/null
-    git clone https://github.com/ibhagwan/picom.git 2>/dev/null
+    git clone --recursive https://github.com/polybar/polybar >/dev/null 2>&1 
+    git clone https://github.com/ibhagwan/picom.git >/dev/null 2>&1
 }
 
 install_polybar(){
