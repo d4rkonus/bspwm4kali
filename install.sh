@@ -103,9 +103,9 @@ fc-cache -v &> /dev/null
 
 # Custom polybar
 echo -e "${yellowColour}[*]${endColour} Applying customizations to polybar...\n"
-mkdir ~/.config/picom
+mkdir -p ~/.config/picom
 cd ~/.config/picom
-cp -r "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
+cp "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
 echo "picom &" >> ~/.config/bspwm/bspwmrc 2>/dev/null
 echo "bspc config border_width 0 &" >> ~/.config/bspwm/bspwmrc 2>/dev/null
 
