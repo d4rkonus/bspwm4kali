@@ -5,7 +5,7 @@ trap 'tput cnorm; exit' INT TERM EXIT
 
 install_dependencies() {
     echo "Instalando dependencias..."
-    sudo apt install -y \
+    sudo apt-get install -y \
         build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
         libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev \
         libxcb-xtest0-dev libxcb-shape0-dev make cmake-data pkg-config python3-sphinx \
