@@ -29,7 +29,7 @@ install_polybar(){
     cd ~/testing/polybar 
     mkdir build
     cd build 
-    cmake .. >/dev/null
+    cmake .. -DBUILD_DOC=OFF >/dev/null
     sudo make install >/dev/null
 }
 
