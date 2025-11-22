@@ -81,12 +81,24 @@ echo -e "${yellowColour}[*]${endColour} Copying configuration files for polybar.
 sudo apt update -y
 sudo apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y &> /dev/null
 cd /home/$USER/Downloads/
-git clone https://github.com/ibhagwan/picom.git
+git clone https://github.com/ibhagwan/picom.git &> /dev/null
 cd picom/
 git submodule update --init --recursive &> /dev/null
 meson --buildtype=release . build  &> /dev/null
 ninja -C build &> /dev/null
 sudo ninja -C build install &> /dev/null
+
+# Despliegue de polybar
+echo -e "${yellowColour}[*]${endColour} Deploying polybar...\n"
+cd /home/$USER/Downloads/
+git clone https://github.com/VaughnValle/blue-sky.git &> /dev/null
+mkdir -p ~/.config/polybar
+cd blue-sky/polybar/   
+cp * -r ~/.config/polybar
+echo "~/.config/polybar/launch.sh" >> ~/.config/bspwm/bspwmrc 
+cd fonts/
+sudo cp * /usr/share/fonts/truetype/ &> /dev/null
+fc-cache -v &> /dev/null
 
 
 echo -e "The end of the installation script has been reached.\n"
