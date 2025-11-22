@@ -95,7 +95,7 @@ git clone https://github.com/VaughnValle/blue-sky.git &> /dev/null
 mkdir -p ~/.config/polybar
 cd blue-sky/polybar/   
 cp * -r ~/.config/polybar &> /dev/null
-echo "~/.config/polybar/launch.sh &" >> ~/.config/bspwm/bspwmrc &> /dev/null
+echo "~/.config/polybar/launch.sh &" >> ~/.config/bspwm/bspwmrc 2>/dev/null
 echo "bspc config focus_follows_pointer true" >> ~/.config/bspwm/bspwmrc &> /dev/null
 cd fonts/
 sudo cp * /usr/share/fonts/truetype/ &> /dev/null
