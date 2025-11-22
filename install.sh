@@ -108,8 +108,8 @@ cp -r "$ruta/config/fonts/"* ~/usr/share/fonts/ &> /dev/null
 # Move kitty files
 echo -e "${yellowColour}[*]${endColour} Moving kitty configuration files...\n"
 mkdir -p ~/.config/kitty
-cp "$ruta/config/kitty.conf" ~/.config/kitty/ &> /dev/null
-cp "$ruta/config/color.ini" ~/.config/kitty/ &> /dev/null
+cp "$ruta/config/kitty/kitty.conf" ~/.config/kitty/ &> /dev/null
+cp "$ruta/config/kitty/color.ini" ~/.config/kitty/ &> /dev/null
  
 
 echo -e "The end of the installation script has been reached.\n"
