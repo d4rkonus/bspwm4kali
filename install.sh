@@ -3,6 +3,8 @@
 tput civis
 trap 'tput cnorm; exit' INT TERM EXIT
 
+USER_HOME=$(eval echo ~$SUDO_USER)
+
 
 check_root(){
     if [ "$(whoami)" != "root" ]; then
@@ -28,15 +30,15 @@ install_dependencies() {
 
 import_repositories(){
     echo -e "\n[+] Clonando repositorios..."
-    mkdir -p ~/testing
-    cd ~/testing
+    mkdir -p "$USER_HOME/testing"
+    cd "$USER_HOME/testing"
     git clone --recursive https://github.com/polybar/polybar >/dev/null 2>&1 
     git clone https://github.com/ibhagwan/picom.git >/dev/null 2>&1
 }
 
 install_polybar() {
     echo "[+] Instalando Polybar..."
-    cd ~/testing/polybar || exit 1
+    cd "$USER_HOME/testing/polybar" || exit 1
     mkdir -p build
     cd build || exit 1
     cmake .. -DBUILD_DOC=OFF -Wno-dev >/dev/null 2>&1
@@ -45,7 +47,7 @@ install_polybar() {
 
 install_picom(){
     echo "[+] Instalando Picom..."
-    cd ~/github/picom
+    cd "$USER_HOME/testing/picom" || exit 1
     git submodule update --init --recursive
     meson --buildtype=release . build
     ninja -C build
@@ -54,7 +56,7 @@ install_picom(){
 
 move_fonts(){
     echo "[+] Moviendo fuentes..."
-    sudo cp -v $ruta/fonts/* /usr/share/fonts/
+    sudo cp -v "$USER_HOME/fonts/"* /usr/share/fonts/
 }
 
 finally(){
