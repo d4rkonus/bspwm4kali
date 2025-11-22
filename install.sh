@@ -47,7 +47,7 @@ finally(){
     echo "[$] Script finished."
 }
 
-
+check_root
 install_dependencies
 import_repositories
 install_polybar
