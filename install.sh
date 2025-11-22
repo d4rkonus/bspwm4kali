@@ -26,13 +26,13 @@ import_repositories(){
     git clone https://github.com/ibhagwan/picom.git >/dev/null 2>&1
 }
 
-install_polybar(){
-    echo -e "\n[+] Instalando Polybar..."
-    cd ~/testing/polybar 
-    mkdir build
-    cd build 
+install_polybar() {
+    echo "[+] Instalando Polybar..."
+     cd ~/testing/polybar || exit 1
+    mkdir -p build
+    cd build || exit 1
     cmake .. -DBUILD_DOC=OFF -Wno-dev >/dev/null 2>&1
-    sudo make install >/dev/null
+    sudo make install >/dev/null 2>&1
 }
 
 finally(){
