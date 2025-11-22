@@ -31,7 +31,7 @@ install_polybar(){
     cd ~/testing/polybar 
     mkdir build
     cd build 
-    cmake ..
+    cmake .. -DBUILD_DOC=OFF -Wno-dev >/dev/null 2>&1
     sudo make install >/dev/null
 }
 
