@@ -100,6 +100,12 @@ cd fonts/
 sudo cp * /usr/share/fonts/truetype/ &> /dev/null
 fc-cache -v &> /dev/null
 
+# Custom polybar
+echo -e "${yellowColour}[*]${endColour} Applying customizations to polybar...\n"
+mkdir ~/.config/picom
+cd ~/.config/picom
+cp -r "$ruta/config/picom.conf" ~/.config/picom/ &> /dev/null
+
 # Move fonts
 echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
 cp -r "$ruta/config/fonts/"* ~/usr/share/fonts/ &> /dev/null
