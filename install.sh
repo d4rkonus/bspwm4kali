@@ -21,8 +21,8 @@ install_dependencies() {
 import_repositories(){
     mkdir -p ~/testing
     cd ~/testing
-    git clone --recursive https://github.com/polybar/polybar > /dev/null
-    git clone https://github.com/ibhagwan/picom.git >/dev/null
+    git clone --recursive https://github.com/polybar/polybar 2>/dev/null
+    git clone https://github.com/ibhagwan/picom.git 2>/dev/null
 }
 
 install_polybar(){
@@ -38,7 +38,7 @@ finally(){
 }
 
 
-install_depencies
+install_dependencies
 import_repositories
 install_polybar
 finally
