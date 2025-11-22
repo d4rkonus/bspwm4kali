@@ -78,7 +78,7 @@ sudo make install &> /dev/null
 
 # Configurar polybar
 echo -e "${yellowColour}[*]${endColour} Copying configuration files for polybar...\n"
-sudo apt update -y
+sudo apt update -y &> /dev/null
 sudo apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y &> /dev/null
 cd /home/$USER/Downloads/
 git clone https://github.com/ibhagwan/picom.git &> /dev/null
@@ -100,6 +100,17 @@ cd fonts/
 sudo cp * /usr/share/fonts/truetype/ &> /dev/null
 fc-cache -v &> /dev/null
 
+# Move fonts
+echo -e "${yellowColour}[*]${endColour} Moving font files...\n"
+cp -r "$ruta/config/fonts/"* ~/usr/share/fonts/ &> /dev/null
+
+
+# Move kitty files
+echo -e "${yellowColour}[*]${endColour} Moving kitty configuration files...\n"
+mkdir -p ~/.config/kitty
+cp "$ruta/config/kitty.conf" ~/.config/kitty/ &> /dev/null
+cp "$ruta/config/color.ini" ~/.config/kitty/ &> /dev/null
+ 
 
 echo -e "The end of the installation script has been reached.\n"
 
