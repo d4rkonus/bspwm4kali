@@ -179,6 +179,11 @@ configurar_kitty() {
     cp "$ruta/config/kitty/color.ini" "$config/kitty/" &> /dev/null
 }
 
+mover_binarios() {
+    echo -e "${yellowColour}[*]${endColour} Moving custom binary files...\n"
+    mkdir -p "$HOME/.config/bin"
+    cp "$ruta/bin/"* "$HOME/.config/bin/" &> /dev/null
+}
 #########################
 #   EJECUCIÓN
 #########################
@@ -194,6 +199,7 @@ desplegar_polybar
 personalizar_polybar
 mover_fuentes
 configurar_kitty
+mover_binarios
 
 echo -e "The end of the installation script has been reached.\n"
 
